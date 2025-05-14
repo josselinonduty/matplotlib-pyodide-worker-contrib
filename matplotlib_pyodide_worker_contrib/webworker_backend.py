@@ -57,7 +57,7 @@ class _BackendBase64(_Backend):
     def show(*args, **kwargs):
         from matplotlib import pyplot as plt
 
-        plt.gcf().canvas.draw()
+        return plt.gcf().canvas.draw()
 
     @staticmethod
     def destroy(*args, **kwargs):
