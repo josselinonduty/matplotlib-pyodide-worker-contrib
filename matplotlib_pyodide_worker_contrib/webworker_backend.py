@@ -1,4 +1,5 @@
 import base64
+import pyodide
 import io
 
 from matplotlib import interactive
@@ -24,8 +25,7 @@ class FigureCanvasAggBase64(backend_agg.FigureCanvasAgg):
         self.figure.savefig(buf, format="svg")
         buf.seek(0)
         # Encode and store in the global variable
-        rendered = base64.b64encode(buf.read()).decode("utf-8")
-        print(f"Rendered Base64: {rendered[:30]}...")  # Debug output
+        rendered = pyodide.ffi.to_js(base64.b64encode(buf.read()).decode("utf-8"))
 
 
 class FigureManagerAggBase64(FigureManagerBase):
