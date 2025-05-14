@@ -21,10 +21,11 @@ class FigureCanvasAggBase64(backend_agg.FigureCanvasAgg):
         # Render the figure to a PNG in memory
         buf = io.BytesIO()
         # Use the figure's DPI for consistency
-        self.figure.savefig(buf, format="png", dpi=self.figure.dpi)
+        self.figure.savefig(buf, format="svg")
         buf.seek(0)
         # Encode and store in the global variable
-        rendered = base64.b64encode(buf.read()).decode("ascii")
+        rendered = base64.b64encode(buf.read()).decode("utf-8")
+        print(f"Rendered Base64: {rendered[:30]}...")  # Debug output
 
 
 class FigureManagerAggBase64(FigureManagerBase):
