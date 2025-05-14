@@ -1,9 +1,9 @@
 [project]
-name = "matplotlib-pyodide"
+name = "matplotlib-pyodide-worker-contrib"
 authors = [
   { name="Pyodide developers"},
 ]
-description = "HTML5 backends for Matplotlib compatible with Pyodide"
+description = "WebWorker backend for Matplotlib compatible with Pyodide"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.12"
@@ -20,8 +20,8 @@ requires = ["setuptools>=71", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project.urls]
-"Homepage" = "https://github.com/pyodide/matplotlib-pyodide"
-"Bug Tracker" = "https://github.com/pyodide/matplotlib-pyodide/issues"
+"Homepage" = "https://github.com/josselinonduty/matplotlib-pyodide-worker-contrib"
+"Bug Tracker" = "https://github.com/josselinonduty/matplotlib-pyodide-worker-contrib/issues"
 
 [project.optional-dependencies]
 test = [
@@ -51,3 +51,25 @@ python_version = "3.12"
 show_error_codes = true
 warn_unreachable = true
 ignore_missing_imports = true
+
+[tool.bumpver]
+current_version = "0.0.1"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message = "bump version {old_version} -> {new_version}"
+tag_message = "{new_version}"
+tag_scope = "default"
+pre_commit_hook = ""
+post_commit_hook = ""
+commit = true
+tag = true
+push = false
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = [
+    'current_version = "{version}"',
+    'version = "{version}"'
+]
+"README.md" = [
+    "{version}",
+]
+

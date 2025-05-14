@@ -1,3 +1,7 @@
 # Build-related files
 /build
 /matplotlib_pyodide.egg-info
+.venv/
+dist/
+*.txt
+PKG-INFO
