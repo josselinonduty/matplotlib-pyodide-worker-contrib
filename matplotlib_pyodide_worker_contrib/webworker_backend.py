@@ -7,9 +7,6 @@ from matplotlib.backends import backend_agg
 
 interactive(True)
 
-# Global variable to hold the Base64 PNG representation
-rendered = None
-
 
 class FigureCanvasAggBase64(backend_agg.FigureCanvasAgg):
     """
@@ -17,7 +14,6 @@ class FigureCanvasAggBase64(backend_agg.FigureCanvasAgg):
     """
 
     def draw(self):
-        global rendered
         # Render the figure to a PNG in memory
         buf = io.BytesIO()
         # Use the figure's DPI for consistency
@@ -27,6 +23,9 @@ class FigureCanvasAggBase64(backend_agg.FigureCanvasAgg):
         rendered = "base64," + base64.b64encode(buf.read()).decode("utf-8")
         # Close the buffer
         buf.close()
+        # Clear the figure to free up memory
+        self.figure.clf()
+        # Return the Base64 string
         return rendered
 
 
